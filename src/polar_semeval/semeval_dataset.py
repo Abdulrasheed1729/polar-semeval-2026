@@ -39,7 +39,7 @@ class SemEvalDataset(Dataset):
     subtask: Literal[1, 2, 3]
     lang_key: LanguageType =  LanguageType.ENG
     split: Literal["train", "dev"] = "train"
-    base_path: Path | str = "datasets/dev_phase"
+    base_path: Path | str = "../../datasets/dev_phase"
     dataframe: pd.DataFrame | None = None
     
     def __post_init__(self):
