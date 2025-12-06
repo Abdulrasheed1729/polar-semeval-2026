@@ -48,10 +48,10 @@ class SemEvalDataset(Dataset):
             raise ValueError(f"Invalid subtask: {self.subtask}")
         
         # Auto-load the dataset
-        base_path = Path(self.base_path)
-        file_path = base_path / f"subtask{self.subtask}" / self.split / f"{self.lang_key.value}.csv"
+        # base_path = Path(self.base_path)
+        file_path = f"{self.base_path}/subtask{self.subtask}/self.split/{self.lang_key.value}.csv"
         
-        if not file_path.exists():
+        if not Path(file_path).exists():
             raise FileNotFoundError(f"Dataset file not found: {file_path}")
         
         dataframe = pd.read_csv(file_path)
