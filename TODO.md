@@ -8,3 +8,4 @@
 - [ ] train/test split
 - [ ] train/test split
 
+For pre-trained model checkout the [afro-xlmr-large](link here) model on huggingface
