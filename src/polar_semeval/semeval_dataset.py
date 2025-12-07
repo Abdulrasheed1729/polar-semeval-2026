@@ -61,6 +61,7 @@ class SemEvalDataset(Dataset):
             raise FileNotFoundError(f"Dataset file not found: {file_path}")
         
         dataframe = pd.read_csv(file_path)
+        self.dataframe  = dataframe
         self.texts = np.array(dataframe['text'].tolist())
 
 
