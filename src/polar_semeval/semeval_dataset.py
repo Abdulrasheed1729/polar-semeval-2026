@@ -39,7 +39,7 @@ class SemEvalDataset(Dataset):
     subtask: Literal[1, 2, 3]
     lang_key: LanguageType =  LanguageType.ENG
     split: Literal["train", "dev"] = "train"
-    base_path: Path | str = "datasets/dev_phase"
+    base_path: Path | str | None = None
     dataframe: pd.DataFrame | None = None
     
     def __post_init__(self):
@@ -49,7 +49,13 @@ class SemEvalDataset(Dataset):
         
         # Auto-load the dataset
         # base_path = Path(self.base_path)
-        file_path = f"{self.base_path}/subtask{self.subtask}/self.split/{self.lang_key.value}.csv"
+        if self.base_path == None:
+            package_dir = Path(__file__)
+            base_path = package_dir / 'datasets/dev_phase'
+        else:
+            base_path = Path(self.base_path)
+
+        file_path = base_path / f"subtask{self.subtask}" / self.split / f"{self.lang_key.value}.csv"
         
         if not Path(file_path).exists():
             raise FileNotFoundError(f"Dataset file not found: {file_path}")
