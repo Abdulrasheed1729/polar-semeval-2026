@@ -50,7 +50,7 @@ class SemEvalDataset(Dataset):
         # Auto-load the dataset
         # base_path = Path(self.base_path)
         if self.base_path == None:
-            package_dir = Path(__file__)
+            package_dir = Path(__file__).parent
             base_path = package_dir / 'datasets/dev_phase'
         else:
             base_path = Path(self.base_path)
