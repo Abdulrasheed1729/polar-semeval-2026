@@ -1,37 +1,11 @@
-import enum
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 from torch.utils.data import Dataset
 import numpy as np
+from .semeval_config  import LanguageType
 
 import pandas as pd
-
-
-class LanguageType(enum.Enum):
-    AMH = "amh"
-    ARB = "arb"
-    BEN = "ben"
-    DEU = "deu"
-    ENG = "eng"
-    FAS = "fas"
-    HAU = "hau"
-    HIN = "hin"
-    ITA = "ita"
-    KHM = "khm"
-    MYA = "mya"
-    NEP = "nep"
-    ORI = "ori"
-    PAN = "pan"
-    POL = "pol"
-    RUS = "rus"
-    SPA = "spa"
-    SWA = "swa"
-    TEL = "tel"
-    TUR = "tur"
-    URD = "urd"
-    ZHO = "zho"
-
 
 @dataclass
 class SemEvalDataset(Dataset):
@@ -49,7 +23,7 @@ class SemEvalDataset(Dataset):
         
         # Auto-load the dataset
         # base_path = Path(self.base_path)
-        if self.base_path == None:
+        if self.base_path is None:
             package_dir = Path(__file__).parent
             base_path = package_dir / 'datasets/dev_phase'
         else:
