@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Tuple
 from dataclasses import dataclass
 import enum
 
@@ -31,4 +31,11 @@ class LanguageType(enum.Enum):
 class SemEvalConfig:
     subtask: Literal[1, 2, 3]
     lang_key: LanguageType = LanguageType.ENG
+
+    def to_submission_path(self) -> Tuple[str, str]:
+        """Convert the configs to match the required submission file tree"""
+        subtask_path = f'subtask_{self.subtask}'
+        prediction_file = f'pred_{self.lang_key.value}.csv'
+
+        return subtask_path, prediction_file
 
